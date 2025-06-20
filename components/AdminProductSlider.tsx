@@ -41,35 +41,34 @@ const dummyProducts: Product[] = [
 
 export default function AdminProductList() {
   return (
-    <div className="w-full px-4 py-6 max-h-[600px]">
-      <h2 className="text-2xl font-bold mb-4 text-pink-600">Admin Product Manager</h2>
-      <div className="space-y-4">
+    <div className="w-full px-4 py-6 max-h-full">
+      <h2 className="text-2xl font-bold mb-6 text-pink-600 text-center">
+        Admin Product Manager
+      </h2>
+      <div className="space-y-6">
         {dummyProducts.map((product) => (
           <div
             key={product.id}
-            className="bg-white shadow-md rounded-lg p-4 border border-gray-200 flex gap-4"
+            className="bg-white shadow-md rounded-xl p-4 border border-gray-200 flex flex-col sm:flex-row sm:items-center gap-4"
           >
             <img
               src={product.image}
               alt={product.title}
-              width={100}
-              height={130}
-              className="rounded-md object-cover"
+              className="w-full md:w-[150px] h-[220px] md:h-[130px] object-contain rounded-md"
             />
-            <div className="flex flex-col justify-between flex-grow">
-              <div>
+            <div className="flex flex-col justify-between flex-grow w-full">
+              <div className="mb-3">
                 <h3 className="text-lg font-semibold">{product.title}</h3>
                 <p className="text-gray-600">{product.price}</p>
               </div>
-
-              <div className="flex gap-2 mt-3">
-                <button className="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600">
+              <div className="flex flex-wrap gap-2">
+                <button className="bg-blue-500 text-white text-sm px-4 py-1.5 rounded-md hover:bg-blue-600 transition">
                   Edit
                 </button>
-                <button className="bg-red-500 text-white text-sm px-3 py-1 rounded hover:bg-red-600">
+                <button className="bg-red-500 text-white text-sm px-4 py-1.5 rounded-md hover:bg-red-600 transition">
                   Delete
                 </button>
-                <button className="bg-gray-500 text-white text-sm px-3 py-1 rounded hover:bg-gray-600">
+                <button className="bg-gray-500 text-white text-sm px-4 py-1.5 rounded-md hover:bg-gray-600 transition">
                   View
                 </button>
               </div>

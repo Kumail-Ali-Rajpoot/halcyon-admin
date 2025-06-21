@@ -1,4 +1,6 @@
+// app/page.tsx
 import React from 'react';
+import serverAction from '@/app/serverAction';
 
 type InputField = {
   id: string;
@@ -25,18 +27,11 @@ function Page() {
       placeholder: "Price",
     },
     {
-      name: "brand",
-      type: "text",
-      label: "Enter brand name",
-      id: "brand",
-      placeholder: "Brand",
-    },
-    {
-      name: "category",
-      type: "text",
-      label: "What type of product",
-      id: "category",
-      placeholder: "Category",
+      name: "discountPrice",
+      type: "number",
+      label: "Enter discount price of product",
+      id: "discountPrice",
+      placeholder: "Discount Price",
     },
     {
       name: "rating",
@@ -48,9 +43,10 @@ function Page() {
     
   ];
 
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <form className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md space-y-5">
+      <form action={serverAction} className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md space-y-5">
         <h2 className="text-2xl font-bold text-center text-gray-800">Add New Product</h2>
 
         {inputs.map((data) => (
@@ -76,6 +72,14 @@ function Page() {
           name="description" 
           placeholder='Description'
           id="description"></textarea>
+          <label
+          className="block text-sm font-medium text-gray-700 mb-1"
+          htmlFor="featureDescription">Enter product feature description</label>
+          <textarea 
+          className="w-full px-3 resize-none h-[10rem] py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          name="featureDescription" 
+          placeholder='Feature Description'
+          id="featureDescription"></textarea>
         </div>
         <div>
           <label htmlFor="relativeSelect" className="block text-sm font-medium text-gray-700 mb-1">

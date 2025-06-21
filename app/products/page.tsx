@@ -2,6 +2,7 @@ import React from 'react'
 import AdminProductSlider from '@/components/AdminProductSlider'
 
 function page() {
+
   return (
     <div className='p-5 md:p-15 flex flex-col items-center'>
         <div className='md:w-[60%] text-center'>

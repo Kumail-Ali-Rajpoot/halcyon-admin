@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { prisma } from "@/lib/prisma"
 
 type Product = {
   id: number;
@@ -39,7 +40,8 @@ const dummyProducts: Product[] = [
   },
 ];
 
-export default function AdminProductList() {
+export default async function AdminProductList() {
+  const products = await prisma.products.findMany();
   return (
     <div className="w-full px-4 py-6 max-h-full">
       <h2 className="text-2xl font-bold mb-6 text-pink-600 text-center">
@@ -75,6 +77,15 @@ export default function AdminProductList() {
             </div>
           </div>
         ))}
+        {
+        products.map((product)=> (
+        <img
+              src={product.image}
+              alt={product.description}
+              className="w-full md:w-[150px] h-[220px] md:h-[130px] object-contain rounded-md"
+            />
+        ))
+      }
       </div>
     </div>
   );

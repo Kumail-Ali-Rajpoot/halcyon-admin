@@ -1,6 +1,7 @@
 // app/page.tsx
 import React from 'react';
 import serverAction from '@/app/serverAction';
+import { UploadCloud } from 'lucide-react';
 
 type InputField = {
   id: string;
@@ -96,7 +97,26 @@ function Page() {
             <option value="games">Discount</option>
           </select>
         </div>
+        {/* Upload image section */}
+    <div className="my-6 cursor-pointer">
+      <label
+        htmlFor="image"
+        className="block text-sm font-semibold text-gray-700 mb-2"
+      >
+        Upload Image
+      </label>
 
+      <div className="flex items-center gap-4 border border-gray-300 rounded-md p-3 cursor-pointer hover:shadow-sm transition">
+        <UploadCloud className="w-6 h-6 text-gray-500" />
+        <input
+          type="file"
+          name="image"
+          id="image"
+          className="text-sm text-gray-600 font-medium focus:outline-none file:hidden"
+        />
+      </div>
+    </div>
+      {/* Submit button */}
         <button
           type="submit"
           className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"

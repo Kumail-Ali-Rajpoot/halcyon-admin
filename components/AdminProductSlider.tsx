@@ -1,7 +1,6 @@
 import React from "react";
 import { prisma } from "@/lib/prisma";
 import AdminProduct from "./AdminProduct";
-import { h1 } from "framer-motion/client";
 
 export default async function AdminProductList() {
   const products = await prisma.products.findMany();

@@ -1,7 +1,9 @@
+'use client'
 // app/page.tsx
 import React from 'react';
 import serverAction from '@/app/serverAction';
 import { UploadCloud } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 type InputField = {
   id: string;
@@ -12,6 +14,14 @@ type InputField = {
 };
 
 function Page() {
+  const path = usePathname();
+  const [isDisabled,setIsDisabled] = React.useState(false);
+  function handleClick ():void  {
+    setIsDisabled(true);
+    if (path == "/products") {
+    setIsDisabled(false);
+    }
+  };
   const inputs: InputField[] = [
     {
       name: "title",
@@ -92,9 +102,9 @@ function Page() {
             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="home">Home</option>
-            <option value="electronics">Shop</option>
-            <option value="clothing">Recommended</option>
-            <option value="games">Discount</option>
+            <option value="shop">Shop</option>
+            <option value="recommended">Recommended</option>
+            <option value="discount">Discount</option>
           </select>
         </div>
         {/* Upload image section */}
@@ -117,12 +127,20 @@ function Page() {
       </div>
     </div>
       {/* Submit button */}
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300"
+        <div
+          // onClick={handleClick}
+          className={`w-full ${isDisabled?``:`hidden`} text-center cursor-pointer bg-gray-600 text-white font-semibold py-2 px-4 rounded-md  transition duration-300`}
         >
-          Submit
+          Processing...
+        </div>
+        <button
+          onClick={handleClick}
+          type="submit"
+          className={`w-full ${isDisabled?`hidden`:``} cursor-pointer active:bg-blue-700 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300`}
+        >
+          {isDisabled? "Processing.." : "Submit"}
         </button>
+        
       </form>
     </div>
   );

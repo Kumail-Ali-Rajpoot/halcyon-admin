@@ -23,20 +23,23 @@ export default async function serverAction(formData: FormData): Promise<void> {
   const filePath = path.join(process.cwd(), "public/uploads", fileName);
   await writeFile(filePath, buffer);
   const imageUrl = `/uploads/${fileName}`;
+  let createCondition =  imageUrl &&  title && price && discountPrice && rating && description && featureDescription && relative;
+  if(createCondition) {
 
-  // ✅ Save image URL to DB
-  await prisma.products.create({
-    data: {
-      title,
-      price,
-      discountPrice,
-      rating,
-      description,
-      featureDescription,
-      relative,
-      image: imageUrl, // use URL, not File object
-    },
-  });
+    // ✅ Save image URL to DB
+    await prisma.products.create({
+      data: {
+        title,
+        price,
+        discountPrice,
+        rating,
+        description,
+        featureDescription,
+        relative,
+        image: imageUrl, // use URL, not File object
+      },
+    });
+  }
   revalidatePath('/products');  // ✅ Refresh /products page
   redirect('/products');    
 }

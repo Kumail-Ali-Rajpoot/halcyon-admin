@@ -13,6 +13,8 @@ type Product = {
   featureDescription: string;
   relative: string;
   image: string;
+  imageBase64: string;
+  imageType: string;
 };
 
 type Props = {
@@ -29,11 +31,12 @@ function AdminProduct({ product }:Props) {
       key={product.id}
       className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all p-4 flex flex-col lg:flex-row gap-4"
     >
-      <img
-        src={product.image}
-        alt={product.title}
-        className="w-full lg:w-[200px] h-[180px] object-contain rounded-md border"
-      />
+<img
+  src={`data:${product.imageType};base64,${product.imageBase64}`}
+  alt={product.title}
+  className="w-full lg:w-[200px] h-[180px] object-contain rounded-md border"
+/>
+
 
       <div className="flex flex-col justify-between flex-grow min-w-0">
         <div>
@@ -60,16 +63,16 @@ function AdminProduct({ product }:Props) {
         </div>
 
         <div className="flex flex-wrap gap-2 mt-3">
-          <button onClick={handleEdit} className="bg-blue-600 text-white text-sm px-4 py-1.5 rounded-md hover:bg-blue-700 transition">
+          <button onClick={handleEdit} className="bg-blue-600 cursor-pointer text-white text-sm px-4 py-1.5 rounded-md hover:bg-blue-700 transition">
             ✏️ Edit
           </button>
         <form action={deleteProduct}>
           <input type="hidden" name="id" value={product.id} />
           <button 
-          className="bg-red-500 text-white text-sm px-4 py-1.5 rounded-md hover:bg-red-600 transition"
+          className="bg-red-500 text-white cursor-pointer text-sm px-4 py-1.5 rounded-md hover:bg-red-600 transition"
           type="submit">Delete</button>
         </form>
-          <button className="bg-gray-700 text-white text-sm px-4 py-1.5 rounded-md hover:bg-gray-800 transition">
+          <button className="bg-gray-700 cursor-pointer text-white text-sm px-4 py-1.5 rounded-md hover:bg-gray-800 transition">
             🔍 View
           </button>
         </div>

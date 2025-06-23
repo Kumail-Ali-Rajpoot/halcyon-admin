@@ -17,7 +17,8 @@ model Products {
   description         String
   featureDescription  String
   relative            String
-  image               String
+  imageType           String
+  imageBase64         String
   createdAt           DateTime @default(now())
 }
 

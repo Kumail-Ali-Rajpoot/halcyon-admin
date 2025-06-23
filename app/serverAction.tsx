@@ -1,9 +1,7 @@
 'use server';
 
 import { prisma } from "@/lib/prisma";
-import { writeFile } from "fs/promises";
 import { revalidatePath } from "next/cache";
-import path from "path";
 import { redirect } from "next/navigation";
 
 export default async function serverAction(formData: FormData): Promise<void> {
@@ -16,17 +14,26 @@ export default async function serverAction(formData: FormData): Promise<void> {
   const relative = formData.get("relative")?.toString() || "";
   const image = formData.get("image") as File;
 
-  // ✅ Save image to /public/uploads and get URL
+  // ✅ Convert image to base64 and get MIME type
   const bytes = await image.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const fileName = `${Date.now()}_${image.name}`;
-  const filePath = path.join(process.cwd(), "public/uploads", fileName);
-  await writeFile(filePath, buffer);
-  const imageUrl = `/uploads/${fileName}`;
-  let createCondition =  imageUrl &&  title && price && discountPrice && rating && description && featureDescription && relative;
-  if(createCondition) {
+  const base64Image = buffer.toString("base64");
+  const imageType = image.type; // like "image/png" or "image/jpeg"
 
-    // ✅ Save image URL to DB
+  // ✅ Validate required fields
+  const isValid =
+    base64Image &&
+    imageType &&
+    title &&
+    price &&
+    discountPrice &&
+    rating &&
+    description &&
+    featureDescription &&
+    relative;
+
+  if (isValid) {
+    // ✅ Save base64 image and type to DB
     await prisma.products.create({
       data: {
         title,
@@ -36,10 +43,12 @@ export default async function serverAction(formData: FormData): Promise<void> {
         description,
         featureDescription,
         relative,
-        image: imageUrl, // use URL, not File object
+        imageBase64: base64Image,
+        imageType: imageType,
       },
     });
   }
-  revalidatePath('/products');  // ✅ Refresh /products page
-  redirect('/products');    
+
+  revalidatePath('/products');
+  redirect('/products');
 }

@@ -1,12 +1,11 @@
 'use server';
 
 import { prisma } from "@/lib/prisma";
-import { writeFile } from "fs/promises";
 import { revalidatePath } from "next/cache";
-import path from "path";
 import { redirect } from "next/navigation";
 
 export default async function updateProduct(formData: FormData): Promise<void> {
+  const id = formData.get("id")?.toString() || "";
   const title = formData.get("title")?.toString() || "";
   const price = formData.get("price")?.toString() || "";
   const discountPrice = formData.get("discountPrice")?.toString() || "";
@@ -15,23 +14,36 @@ export default async function updateProduct(formData: FormData): Promise<void> {
   const featureDescription = formData.get("featureDescription")?.toString() || "";
   const relative = formData.get("relative")?.toString() || "";
   const image = formData.get("image") as File;
-  const id = formData.get("id")?.toString() || "";
 
-  // ✅ Save image to /public/uploads and get URL
+  // ✅ Check if image exists and is a valid File
+  if (!image || typeof image.arrayBuffer !== "function") {
+    throw new Error("Invalid image file.");
+  }
+
+  // ✅ Convert image to base64 and get MIME type
   const bytes = await image.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const fileName = `${Date.now()}_${image.name}`;
-  const filePath = path.join(process.cwd(), "public/uploads", fileName);
-  await writeFile(filePath, buffer);
-  const imageUrl = `/uploads/${fileName}`;
-  let createCondition =  imageUrl &&  title && price && discountPrice && rating && description && featureDescription && relative;
-  if(createCondition) {
+  const base64Image = buffer.toString("base64");
+  const imageType = image.type;
 
-    // ✅ Save image URL to DB
+  // ✅ Ensure all required fields are provided
+  const isValid =
+    base64Image &&
+    imageType &&
+    title &&
+    price &&
+    discountPrice &&
+    rating &&
+    description &&
+    featureDescription &&
+    relative &&
+    id;
+
+  if (isValid) {
     await prisma.products.update({
-      where :{
-        id
-    },
+      where: {
+        id,
+      },
       data: {
         title,
         price,
@@ -40,10 +52,12 @@ export default async function updateProduct(formData: FormData): Promise<void> {
         description,
         featureDescription,
         relative,
-        image: imageUrl, // use URL, not File object
+        imageBase64: base64Image,
+        imageType: imageType,
       },
     });
   }
-  revalidatePath('/products');  // ✅ Refresh /products page
-  redirect('/products');    
+
+  revalidatePath('/products');
+  redirect('/products');
 }

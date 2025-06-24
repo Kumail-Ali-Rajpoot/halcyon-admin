@@ -62,7 +62,7 @@ function Page() {
 
         {inputs.map((data) => (
           <div key={data.id}>
-            <label htmlFor={data.id} className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor={data.id} className="font-semibold block text-sm text-gray-700 mb-1">
               {data.label}
             </label>
             <input
@@ -76,7 +76,7 @@ function Page() {
         ))}
         <div>
           <label
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-semibold text-gray-700 mb-1"
           htmlFor="description">Enter product description</label>
           <textarea 
           className="w-full px-3 resize-none h-[10rem] py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -84,7 +84,7 @@ function Page() {
           placeholder='Description'
           id="description"></textarea>
           <label
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-semibold text-gray-700 mb-1"
           htmlFor="featureDescription">Enter product feature description</label>
           <textarea 
           className="w-full px-3 resize-none h-[10rem] py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -93,8 +93,8 @@ function Page() {
           id="featureDescription"></textarea>
         </div>
         <div>
-          <label htmlFor="relativeSelect" className="block text-sm font-medium text-gray-700 mb-1">
-            Select Relative
+          <label htmlFor="relativeSelect" className=" font-semibold block text-sm text-gray-700 mb-1">
+           Relative Product
           </label>
           <select
             name="relative"
@@ -105,6 +105,7 @@ function Page() {
             <option value="shop">Shop</option>
             <option value="recommended">Recommended</option>
             <option value="discount">Discount</option>
+            <option value="feature">Feature</option>
           </select>
         </div>
         {/* Upload image section */}

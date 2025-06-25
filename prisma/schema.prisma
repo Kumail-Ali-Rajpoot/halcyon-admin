@@ -8,36 +8,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Products {
-  id                  String   @id @map("_id") @default(auto()) @db.ObjectId
-  title               String
-  price               String
-  discountPrice       String
-  rating              String
-  description         String
-  featureDescription  String
-  relative            String
-  imageType           String
-  imageBase64         String
-  createdAt           DateTime @default(now())
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  title              String
+  price              String
+  discountPrice      String
+  rating             String
+  description        String
+  featureDescription String
+  relative           String
+  imageBase64        String
+  imageType          String
+  createdAt          DateTime @default(now())
 }
 
-model Orders {
-  id          String   @id @map("_id") @default(auto()) @db.ObjectId
-  email       String
-  country     String
-  firstName   String
-  lastName    String
-  address     String
-  city        String
-  phone       String
-  createdAt   DateTime @default(now())
-}
 model Complain {
   id          String   @id @map("_id") @default(auto()) @db.ObjectId
   email       String
   name        String
-  topic       String
+  problem     String
   message     String
   createdAt   DateTime @default(now())
 }
@@ -47,5 +37,18 @@ model Contact {
   name        String
   topic       String
   message     String
+  createdAt   DateTime @default(now())
+}
+
+model Order {
+  id          String   @id @map("_id") @default(auto()) @db.ObjectId
+  phoneNumber String
+  email       String
+  address     String
+  city        String
+  firstName   String
+  lastName    String
+  region      String
+  productId   String
   createdAt   DateTime @default(now())
 }

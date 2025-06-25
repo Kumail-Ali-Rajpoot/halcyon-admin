@@ -1,7 +1,9 @@
 import React from "react";
 import ContactCard from "@/components/ContactCard";
+import { prisma } from "@/lib/prisma";
 
-export default function Page() {
+export default async function Page() {
+  const contactDB = await prisma.contact.findMany();
   return (
     <div className="p-6 md:p-12 lg:p-16 flex flex-col items-center bg-gray-50 min-h-screen">
       {/* Header Section */}
@@ -14,7 +16,13 @@ export default function Page() {
       </div>
 
       {/* Contact Card */}
-      <ContactCard />
+      <div className="w-full flex flex-col-reverse ">
+      {
+        contactDB.map((contactDB) => (
+          <ContactCard contactDB={contactDB} />
+        ))
+      }
+      </div>
     </div>
   );
 }

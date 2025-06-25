@@ -1,7 +1,9 @@
 import React from "react";
 import ComplainCard from "@/components/ComplainCard";
+import { prisma } from "@/lib/prisma"
 
-export default function Page() {
+export default async function Page() {
+  const complainDB = await prisma.complain.findMany();
   return (
     <div className="p-6 md:p-12 lg:p-16 flex flex-col items-center bg-gray-50 min-h-screen">
       {/* Header Section */}
@@ -14,7 +16,15 @@ export default function Page() {
       </div>
 
       {/* Contact Card */}
-      <ComplainCard />
+      <div className="w-full flex flex-col-reverse flex-wrap">
+      {
+        complainDB.map((data) => (
+          <div key={data.id}>
+            <ComplainCard complainDB={data} />
+          </div>
+        ))
+      }
+      </div>
     </div>
   );
 }

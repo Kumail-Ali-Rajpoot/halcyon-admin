@@ -14,6 +14,5 @@ export async function deleteProduct(formData: FormData) {
   await prisma.products.delete({
     where: { id },
   });
-
   revalidatePath("/products");
 }

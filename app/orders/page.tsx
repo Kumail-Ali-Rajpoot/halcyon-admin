@@ -1,3 +1,6 @@
+export const revalidate = 5;
+export const dynamic = "force-dynamic";
+
 import React from 'react'
 import OrderCard from '@/components/OrderCard';
 import { prisma } from "@/lib/prisma"

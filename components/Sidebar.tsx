@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X, UserCog,ShoppingCartIcon, Phone, FileWarning,ShoppingBasketIcon } from "lucide-react";
+import { Menu, X, UserCog,ShoppingCartIcon,Settings, Phone, FileWarning,ShoppingBasketIcon } from "lucide-react";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -9,6 +9,7 @@ export default function Sidebar() {
 
   const navItems = [
     { name: "Admin", icon: <UserCog size={20} />, href: "/" },
+    { name: "Manage", icon: <Settings size={20} />, href: "/management" },
     { name: "Products", icon: <ShoppingBasketIcon size={20} />, href: "/products" },
     { name: "Contact", icon: <Phone size={20} />, href: "/contact" },
     { name: "Complain", icon: <FileWarning size={20} />, href: "/complain" },

@@ -58,7 +58,7 @@ function Page() {
 
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center sm:p-5">
       <form action={updateProduct} className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md space-y-5">
         <h2 className="text-2xl font-bold text-center text-gray-800">Update Product</h2>
 

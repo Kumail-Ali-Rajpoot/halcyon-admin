@@ -52,3 +52,8 @@ model Order {
   productId   String
   createdAt   DateTime @default(now())
 }
+model category {
+  id          String   @id @map("_id") @default(auto()) @db.ObjectId
+  name        String
+  createdAt   DateTime @default(now())
+}

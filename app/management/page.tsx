@@ -2,6 +2,8 @@ import CategoryForm from "@/components/CategoryForm";
 import { prisma } from "@/lib/prisma";
 import PreviewCategories from "@/components/PreviewCategories";
 import TagForm from "@/components/TagForm";
+import PreviewCategoriesTags from "@/components/PreviewCategoriesTags";
+
 export default async function Page() {
   const category = await prisma.category.findMany();
   const tags = await prisma.tags.findMany();
@@ -25,7 +27,9 @@ export default async function Page() {
           </h2>
           <TagForm tag={tags} options={category}></TagForm>
         </div>
-
+        {/* Preview of category tags */}
+        <hr />
+        <PreviewCategoriesTags/>
         {/* Products Section */}
         <div className="border-t pt-6">
           <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">

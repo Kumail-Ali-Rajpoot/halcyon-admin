@@ -8,3 +8,9 @@ export default async function deleteCategory (id:string) {
     })
     revalidatePath("/management")
   }
+  export async function deleteTag (id:string) {
+    await prisma.tags.delete({
+      where:{id}
+    })
+    revalidatePath("/management")
+  }

@@ -3,17 +3,12 @@ import React from 'react';
 import handleClick from "@/app/action/deletedById"
 import { useRouter } from 'next/navigation';
 import { Delete } from 'lucide-react';
-type Tag = {
-  name: string;
-  id: string;
-  createdAt?: string;
+import { tags } from '@prisma/client';
+type Prop = {
+  tags: tags[]
 };
 
-export default function PreviewCategories({
-  tags,
-}: {
-  tags: Tag[];
-}) {
+export default function PreviewCategories({tags}: Prop[]) {
     const router = useRouter();
   return (
     <div className="border-t pt-6 mb-10">

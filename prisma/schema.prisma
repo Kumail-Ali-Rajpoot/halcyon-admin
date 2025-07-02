@@ -57,3 +57,10 @@ model category {
   name        String
   createdAt   DateTime @default(now())
 }
+
+model tags {
+  id           String   @id @map("_id") @default(auto()) @db.ObjectId
+  tagName       String
+  categoryName String
+  createdAt    DateTime @default(now())
+}

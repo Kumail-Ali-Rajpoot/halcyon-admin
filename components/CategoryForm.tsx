@@ -28,9 +28,9 @@ export default function CategoryForm() {
               required
             />
             {isPending ? (
-              <div className="bg-gray-400 text-white px-6 py-2 rounded-lg cursor-not-allowed">
+              <button disabled className="bg-gray-400 text-white px-6 py-2 rounded-lg cursor-not-allowed">
                 Processing...
-              </div>
+              </button>
             ) : (
               <button
                 type="submit"

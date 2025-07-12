@@ -9,5 +9,5 @@ export async function addCategory (formData:FormData) {
             name
         }
     })
-      revalidatePath("/products");
+      revalidatePath("/management");
 }

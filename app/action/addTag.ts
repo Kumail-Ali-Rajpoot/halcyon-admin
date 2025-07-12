@@ -11,5 +11,5 @@ export async function addTags (formData:FormData) {
             tagName,
         }
     })
-      revalidatePath("/products");
+      revalidatePath("/management");
 }

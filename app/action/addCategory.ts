@@ -1,5 +1,6 @@
 'use server'
 import { prisma } from "@/lib/prisma"
+import { revalidatePath } from "next/cache";
 
 export async function addCategory (formData:FormData) {
     const name = formData.get("name");
@@ -8,4 +9,5 @@ export async function addCategory (formData:FormData) {
             name
         }
     })
+      revalidatePath("/products");
 }

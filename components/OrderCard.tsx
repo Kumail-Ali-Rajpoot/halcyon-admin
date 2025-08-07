@@ -21,9 +21,9 @@ export default async function OrderCard({ order }: { order: Order }) {
   });
 
   return (
-    <div className="w-full bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300">
+    <div className="w-full bg-gray-800 text-amber-50 rounded-2xl shadow-xl border border-gray-200 overflow-hidden hover:shadow-2xl transition-all duration-300">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 text-white px-6 py-4 md:py-6">
+      <div className="bg-gradient-to-r from-green-500 via-green-600 to-green-700 text-white px-6 py-4 md:py-6">
         <h2 className="text-lg md:text-2xl font-bold tracking-wide">
           Order by {order.firstName} {order.lastName}
         </h2>
@@ -44,12 +44,12 @@ export default async function OrderCard({ order }: { order: Order }) {
               alt={product?.title || "Product Image"}
               className="rounded-xl shadow-md object-contain w-full h-auto max-h-[200px]"
             />
-            <h3 className="mt-3 text-base md:text-lg font-semibold text-gray-800">{product?.title}</h3>
+            <h3 className="mt-3 text-amber-50 text-base md:text-lg font-semibold ">{product?.title}</h3>
           </div>
         </div>
 
         {/* Order Info */}
-        <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base text-gray-700">
+        <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base ">
           <p>
             <span className="font-semibold">Email:</span> {order.email}
           </p>

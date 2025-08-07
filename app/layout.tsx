@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen bg-gray-100">
+      <body className="flex min-h-screen bg-gray-700">
         <Sidebar />
         <main className="flex-1 md:pl-64 p-4">{children}</main>
       </body>

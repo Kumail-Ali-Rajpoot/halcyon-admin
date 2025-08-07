@@ -38,7 +38,7 @@ export default function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
+                className="flex items-center gap-3 text-gray-300 hover:text-green-400 transition-colors"
                 onClick={() => setIsOpen(false)} // Close on mobile click
               >
                 {item.icon}

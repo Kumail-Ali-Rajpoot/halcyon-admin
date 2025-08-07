@@ -61,7 +61,7 @@ model category {
 
 model tags {
   id           String   @id @map("_id") @default(auto()) @db.ObjectId
-  tagName       String
+  tagName      String
   categoryName String
   createdAt    DateTime @default(now())
 }

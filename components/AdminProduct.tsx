@@ -2,23 +2,10 @@
 // @/components/AdminProduct.tsx
 import { deleteProduct } from '@/app/action/delete';
 import { useRouter } from 'next/navigation';
-type Product = {
-  id: number;
-  title: string;
-  price: string;
-  discountPrice: string;
-  rating: number;
-  createdAt: string | Date;
-  description: string;
-  featureDescription: string;
-  relative: string;
-  image: string;
-  imageBase64: string;
-  imageType: string;
-};
+import { Products } from '@prisma/client';
 
 type Props = {
-  product: Product;
+  product: Products;
 };
 
 function AdminProduct({ product }:Props) {
@@ -44,21 +31,25 @@ function AdminProduct({ product }:Props) {
             {product.title}
           </h3>
 
-          <div className="text-sm text-gray-600 space-y-1 mb-3">
+          <div className="text-sm flex flex-wrap gap-3.5 justify-around text-gray-600 space-y-1 mb-3">
             <p><strong>Price:</strong>RS {product.price}</p>
             <p><strong>Discount Price:</strong>RS {product.discountPrice}</p>
             <p><strong>Rating:</strong> {product.rating} ⭐</p>
             <p><strong>Added:</strong> {new Date(product.createdAt).toLocaleDateString()}</p>
           </div>
-
+        <div className='flex flex-wrap gap-3.5 justify-around'>
+          <p className="text-sm text-gray-700 mb-2 line-clamp-1">
+            <strong>Relative:</strong> {product.relative}
+          </p>          
+          <p className="text-sm text-gray-700 mb-2 line-clamp-1">
+            <strong>Category:</strong> {product.category}
+          </p>
+        </div>
           <p className="text-sm text-gray-700 mb-1 line-clamp-3">
             <strong>Description:</strong> {product.description}
           </p>
           <p className="text-sm text-gray-700 mb-1 line-clamp-2">
             <strong>Feature:</strong> {product.featureDescription}
-          </p>
-          <p className="text-sm text-gray-700 mb-2 line-clamp-1">
-            <strong>Relative:</strong> {product.relative}
           </p>
         </div>
 

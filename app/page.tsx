@@ -4,7 +4,7 @@ import React from 'react';
 import serverAction from '@/app/serverAction';
 import { UploadCloud } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-
+import CategoriesOptions from '@/components/CategoriesOptions';
 type InputField = {
   id: string;
   name: string;
@@ -93,6 +93,7 @@ function Page() {
           id="featureDescription"></textarea>
         </div>
         <div>
+          {/* Relative Options */}
           <label htmlFor="relativeSelect" className=" font-semibold block text-sm text-gray-700 mb-1">
            Relative Product
           </label>
@@ -107,6 +108,10 @@ function Page() {
             <option value="discount">Discount</option>
             <option value="feature">Feature</option>
           </select>
+          {/* Category Options */}
+
+        <CategoriesOptions></CategoriesOptions>
+          
         </div>
         {/* Upload image section */}
     <div className="my-6 cursor-pointer">

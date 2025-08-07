@@ -12,6 +12,7 @@ export default async function serverAction(formData: FormData): Promise<void> {
   const description = formData.get("description")?.toString() || "";
   const featureDescription = formData.get("featureDescription")?.toString() || "";
   const relative = formData.get("relative")?.toString() || "";
+  const category = formData.get("category")?.toString() || "";
   const image = formData.get("image") as File;
 
   // ✅ Convert image to base64 and get MIME type
@@ -38,6 +39,7 @@ export default async function serverAction(formData: FormData): Promise<void> {
       data: {
         title,
         price,
+        category,
         discountPrice,
         rating,
         description,

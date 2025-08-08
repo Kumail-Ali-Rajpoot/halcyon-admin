@@ -83,7 +83,7 @@ function Page() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <form
         action={handleSubmit}
-        className="bg-gray-900 text-white shadow-lg rounded-lg p-6 w-full max-w-md space-y-5"
+        className="bg-gray-900 text-white shadow-lg rounded-lg p-6 w-full space-y-5"
       >
         <h2 className="text-2xl font-bold text-center text-amber-50">Add New Product</h2>
 
